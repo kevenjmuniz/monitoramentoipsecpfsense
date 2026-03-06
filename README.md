@@ -94,8 +94,8 @@ Saída esperada:
 ```
 {
  "data":[
-  {"{#CONN}":"con10","{#NAME}":"AVAL/TOLEDO VPN"},
-  {"{#CONN}":"con17","{#NAME}":"COBROACTIVO"}
+  {"{#CONN}":"con10","{#NAME}":"AVAL/HP VPN"},
+  {"{#CONN}":"con17","{#NAME}":"PHENIX"}
  ]
 }
 ```
