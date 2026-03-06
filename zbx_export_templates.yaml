@@ -1,0 +1,56 @@
+zabbix_export:
+  version: '6.4'
+  template_groups:
+    - uuid: 36bff6c29af64692839d077febfc7079
+      name: 'Templates/Network devices'
+  templates:
+    - uuid: ad708f1620a640c8b112f2b0137cd42e
+      template: 'Template pfSense IPsec LLD'
+      name: 'Template pfSense IPsec LLD'
+      description: 'Esse template foi criado para monitorar os tuneis.'
+      groups:
+        - name: 'Templates/Network devices'
+      discovery_rules:
+        - uuid: 1f9f3aab331c44e48a4124722532eca9
+          name: 'IPsec - Discover conN'
+          key: ipsec2.discover
+          item_prototypes:
+            - uuid: fde0c6e334cb480989cca8bdeed20d6b
+              name: 'IPsec {#NAME} ({#CONN}) - IN'
+              key: 'ipsec2.traffic[{#CONN},in]'
+              units: Bps
+              preprocessing:
+                - type: CHANGE_PER_SECOND
+                  parameters:
+                    - ''
+            - uuid: c9cbe66958d94543abf87e690f13f12f
+              name: 'IPsec {#NAME} ({#CONN}) - OUT'
+              key: 'ipsec2.traffic[{#CONN},out]'
+              units: Bps
+              preprocessing:
+                - type: CHANGE_PER_SECOND
+                  parameters:
+                    - ''
+            - uuid: 9eac86207b5243ae83ebb48f9da41de5
+              name: 'IPsec {#NAME} ({#CONN}) - Status'
+              key: 'ipsec2.tunnel[{#CONN}]'
+              delay: 30s
+              trigger_prototypes:
+                - uuid: 3bc4a32d96614b2598071ff04c49aeb2
+                  expression: 'min(/Template pfSense IPsec LLD/ipsec2.tunnel[{#CONN}],2m)=0'
+                  name: 'IPsec {#NAME} DOWN'
+          graph_prototypes:
+            - uuid: 5da214aeea994699b43d5b3311572593
+              name: 'IPsec {#NAME} ({#CONN}) - Tráfego'
+              graph_items:
+                - color: 199C0D
+                  calc_fnc: ALL
+                  item:
+                    host: 'Template pfSense IPsec LLD'
+                    key: 'ipsec2.traffic[{#CONN},in]'
+                - sortorder: '1'
+                  color: F63100
+                  calc_fnc: ALL
+                  item:
+                    host: 'Template pfSense IPsec LLD'
+                    key: 'ipsec2.traffic[{#CONN},out]'
