@@ -105,7 +105,7 @@
           "evaltype": "0",
           "functions": [],
           "group": {
-            "filter": "CMK - INFRAESTRUTURA"
+            "filter": ""
           },
           "host": {
             "filter": "PFSENSE - CENTRAL - Tuneis"
@@ -243,7 +243,7 @@
           "evaltype": "0",
           "functions": [],
           "group": {
-            "filter": "CMK - INFRAESTRUTURA"
+            "filter": "INFRAESTRUTURA"
           },
           "host": {
             "filter": "PFSENSE - CENTRAL - Tuneis"
@@ -377,7 +377,7 @@
           "evaltype": "0",
           "functions": [],
           "group": {
-            "filter": "CMK - INFRAESTRUTURA"
+            "filter": "INFRAESTRUTURA"
           },
           "host": {
             "filter": "PFSENSE - CENTRAL - Tuneis"
